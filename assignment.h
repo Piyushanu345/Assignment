@@ -1,58 +1,40 @@
-void armstrong(int n1){
-    int a = n1, c = 0, s = 0, d;
-    while (a > 0) {
-        d = a % 10;
-        c++;  
-        a = a / 10; 
-    }
-    int b = n1;
-    while (b > 0) {
-        d = b % 10;
-        s += pow(d, c);  
-        b = b / 10;  
-    }
-int palindrome(int a)
-{
-    int b;
-    int p = 0;
-    int temp = a;
-    while (a > 0)
-    {
-        b = a % 10;
-        p = p * 10 + b;
-        a = a / 10;
-    }
-    if (temp == p)
-    {
-        return 1;
-    }
-    return 0;
-}
+int isArmstrong(int n) {
+    int original = n;
+    int sum = 0, digits = 0, temp = n;
 
-int spynumber(int n)
-{
-    int sum;
-    int m = 1;
-    int temp1;
-    int n2 = n;
-    int temp2;
-    while (n > 0)
-    {
-        temp1 = n % 10;
-        sum = sum + temp1;
-        n = n / 10;
+    while (temp > 0) {
+        digits++;
+        temp /= 10;
     }
-    while (n2 > 0)
-    {
-        temp2 = n2 % 10;
-        m = m * temp2;
-        n2 = n2 / 10;
+
+    temp = n;
+    while (temp > 0) {
+        int digit = temp % 10;
+        sum += pow(digit, digits);
+        temp /= 10;
     }
-    if (sum == m)
-    {
-        return 1;
+
+    return sum == original;
+}
+int isPalindrome(int n) {
+    int original = n, reversed = 0;
+
+    while (n > 0) {
+        reversed = reversed * 10 + n % 10;
+        n /= 10;
     }
-    else
-    {
-        return 0;
+
+    return original == reversed;
+}
+int isSpyNumber(int n) {
+    int sum = 0, product = 1;
+
+    while (n > 0) {
+        int digit = n % 10;
+        sum += digit;
+        product *= digit;
+        n /= 10;
     }
+
+    return sum == product;
+}
